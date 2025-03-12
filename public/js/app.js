@@ -56,20 +56,36 @@ weatherForm.addEventListener("submit", (e) => {
 
 function showData(city) {
     getWeatherData(city, (result) => {
-        if(result.cod == 200) {
-            if(result.weather[0].description == "rain" ||
-            result.weather[0].description == "fog") {
-                weatherIcon.className = "wi wi-day-" + result.weather[0].description;
-            }
-            else{
-                weatherIcon.className = "wi wi-day-cloudy";
-            }
+        if (result.cod == 200) {
+            // Mapping OpenWeather descriptions to Weather Icons
+            const weatherMapping = {
+                "clear sky": "wi-day-sunny",
+                "few clouds": "wi-day-cloudy",
+                "scattered clouds": "wi-cloud",
+                "broken clouds": "wi-cloudy",
+                "overcast clouds": "wi-cloudy",
+                "shower rain": "wi-showers",
+                "rain": "wi-rain",
+                "thunderstorm": "wi-thunderstorm",
+                "snow": "wi-snow",
+                "mist": "wi-fog",
+                "fog": "wi-fog",
+                "haze": "wi-day-haze",
+                "smoke": "wi-smoke",
+                "drizzle": "wi-sprinkle"
+            };
+
+            // Get the weather description in lowercase for matching
+            let description = result.weather[0].description.toLowerCase();
             
+            // Set the corresponding icon class
+            weatherIcon.className = `wi ${weatherMapping[description] || "wi-day-cloudy"}`;
+
+            // Set other weather details
             locationElement.textContent = result?.name;
-            tempElement.textContent = (result?.main?.temp - 273.15).toFixed(2) + String.fromCharCode(176)+"C";
-            weatherCondition.textContent = result?.weather[0]?.description?.toUpperCase();
-        }
-        else{
+            tempElement.textContent = (result?.main?.temp - 273.15).toFixed(2) + String.fromCharCode(176) + "C";
+            weatherCondition.textContent = description.toUpperCase();
+        } else {
             locationElement.textContent = "City not found.";
         }
     });
