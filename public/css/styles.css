@@ -36,17 +36,8 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.weatherInfo {
-  font-size: 35px;
-  font-weight: bold;
-  font-family: 'Poiret One', cursive;
-  color: #F5F5F5; 
-  text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.7), 0 0 8px rgba(173, 216, 230, 0.5);
-  text-align: center;
 }
 
 .weatherLocation{
@@ -78,18 +69,13 @@ body {
 }
 
 .widget .weatherIcon {
-  height: 60%;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
   font-size: 100px;
   color: white
 }
 
  .widget .weatherIcon i {
-  padding-top: 30px;
+  padding: 30px;
+  padding-top: 60px;
 }
 
 .input-field {
@@ -121,20 +107,31 @@ body {
 }
 
 .icon-and-weatherInfo {
+  width: 500px;
+  height: 200px;
   display: flex;
+  flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   gap: 40px;
-  margin-top: 50px;
+  margin: 50px auto;
   background: rgba(0, 0, 0, 0.4);
   padding: 10px;
   padding-left: 20px;
   padding-bottom: 40px;
-  border-radius: 8px;
+  border-radius: 20px;
+}
+.weatherInfo {
+  font-size: 35px;
+  font-weight: bold;
+  font-family: 'Poiret One', cursive;
+  color: #F5F5F5; 
+  text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.7), 0 0 8px rgba(173, 216, 230, 0.5);
+  text-align: center;
+  transform: translate(60px, -130px);
 }
 
 .temperature {
-  padding-top: 30px;
   padding-bottom: 5px;
   font-size: 60px; 
   font-weight: bold;
@@ -147,7 +144,7 @@ body {
 .place {
   text-align: center;
   font-size: 40px;
-  margin-top: 70px;
+  margin-top: 25px;
   color: #00BFFF;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
   letter-spacing: 1px;

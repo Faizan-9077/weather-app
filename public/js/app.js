@@ -4,9 +4,9 @@ const search = document.querySelector('input');
 const weatherIcon = document.querySelector('.weatherIcon i');
 const weatherCondition = document.querySelector('.weatherCondition');
 const tempElement = document.querySelector('.temperature span');
-
 const locationElement = document.querySelector('.place');
 const dateElement = document.querySelector('.date');
+const weatherDetails = document.querySelector(".icon-and-weatherInfo");
 
 const currentDate = new Date();
 const options = {month: "long"};
@@ -29,6 +29,7 @@ if("geolocation" in navigator) {
                 } 
                 else{
                     console.log("City not found.")
+                    weatherDetails.style.display = "none";
                 }
             })
             .catch((error) => {
@@ -50,6 +51,7 @@ weatherForm.addEventListener("submit", (e) => {
     weatherIcon.className = "";
     tempElement.className = "";
     weatherCondition.className = "";
+    weatherDetails.style.display = "block";
 
     showData(search.value);
 });
@@ -57,6 +59,7 @@ weatherForm.addEventListener("submit", (e) => {
 function showData(city) {
     getWeatherData(city, (result) => {
         if (result.cod == 200) {
+            weatherDetails.style.display = "block";
             // Mapping OpenWeather descriptions to Weather Icons
             const weatherMapping = {
                 "clear sky": "wi-day-sunny",
@@ -87,6 +90,7 @@ function showData(city) {
             weatherCondition.textContent = description.toUpperCase();
         } else {
             locationElement.textContent = "City not found.";
+            weatherDetails.style.display = "none";
         }
     });
 }
